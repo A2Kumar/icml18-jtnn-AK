@@ -50,7 +50,7 @@ vocab = [x.strip("\r\n ") for x in open(args.vocab)]
 vocab = Vocab(vocab)
 
 model = JTNNVAE(vocab, args.hidden_size, args.latent_size, args.depthT, args.depthG).cuda()
-print model
+print(model)
 
 for param in model.parameters():
     if param.dim() == 1:

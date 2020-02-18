@@ -25,10 +25,10 @@ class JTNNDecoder(nn.Module):
         self.W_h = nn.Linear(2 * hidden_size, hidden_size)
 
         #Word Prediction Weights 
-        self.W = nn.Linear(hidden_size + latent_size, hidden_size)
+        self.W = nn.Linear(int(hidden_size + latent_size), hidden_size)
 
         #Stop Prediction Weights
-        self.U = nn.Linear(hidden_size + latent_size, hidden_size)
+        self.U = nn.Linear(int(hidden_size + latent_size), hidden_size)
         self.U_i = nn.Linear(2 * hidden_size, hidden_size)
 
         #Output Weights

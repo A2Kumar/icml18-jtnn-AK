@@ -4,7 +4,7 @@ from multiprocessing import Pool
 
 import math, random, sys
 from optparse import OptionParser
-import cPickle as pickle
+import pickle as pickle
 
 from fast_jtnn import *
 import rdkit

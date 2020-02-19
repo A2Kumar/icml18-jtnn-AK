@@ -42,7 +42,7 @@ parser.add_argument('--anneal_rate', type=float, default=0.9)
 parser.add_argument('--anneal_iter', type=int, default=40000)
 parser.add_argument('--kl_anneal_iter', type=int, default=2000)
 parser.add_argument('--print_iter', type=int, default=50)
-parser.add_argument('--save_iter', type=int, default=5000)
+parser.add_argument('--save_iter', type=int, default=500)
 
 args = parser.parse_args()
 print(args)

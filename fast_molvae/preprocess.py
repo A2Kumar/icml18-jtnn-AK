@@ -11,7 +11,7 @@ import rdkit
 
 def tensorize(args, assm=True):
     smiles, num = args
-    print(num)
+    #print(num)
     mol_tree = MolTree(smiles)
     mol_tree.recover()
     if assm:
@@ -46,7 +46,7 @@ if __name__ == "__main__":
     new_data = []
     for num,k in enumerate(data):
         new_data.append((k,num))
-    all_data = pool.map(tensorize, new_data)
+    all_data = list(tqdm.tqdm(p.imap(tensorize, new_data), total=len(new_data)))
 
     le = (len(all_data) + num_splits - 1) / num_splits
 

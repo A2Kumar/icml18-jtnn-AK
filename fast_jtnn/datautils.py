@@ -26,7 +26,7 @@ class PairTreeFolder(object):
         for fn in self.data_files:
             fn = os.path.join(self.data_folder, fn)
             with open(fn) as f:
-                data = pickle.load(f,encoding='bytes')
+                data = pickle.load(f)
 
             if self.shuffle: 
                 random.shuffle(data) #shuffle data before batch
@@ -61,7 +61,7 @@ class MolTreeFolder(object):
         for fn in self.data_files:
             fn = os.path.join(self.data_folder, fn)
             with open(fn) as f:
-                data = pickle.load(f,encoding='bytes')
+                data = pickle.load(f)
 
             if self.shuffle: 
                 random.shuffle(data) #shuffle data before batch

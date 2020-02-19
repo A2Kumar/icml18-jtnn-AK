@@ -9,9 +9,7 @@ from tqdm import tqdm
 from fast_jtnn import *
 import rdkit
 
-def tensorize(args, assm=True):
-    smiles, num = args
-    #print(num)
+def tensorize(smiles, assm=True):
     mol_tree = MolTree(smiles)
     mol_tree.recover()
     if assm:
@@ -43,15 +41,12 @@ if __name__ == "__main__":
     with open(opts.train_path) as f:
         data = [line.strip("\r\n ").split()[0] for line in f]
 
-    new_data = []
-    for num,k in enumerate(data):
-        new_data.append((k,num))
-    all_data = list(tqdm(pool.imap(tensorize, new_data), total=len(new_data)))
+    all_data = pool.map(tensorize, data)
 
-    le = (len(all_data) + num_splits - 1) / num_splits
+    le = int((len(all_data) + num_splits - 1) / num_splits)
 
     for split_id in range(num_splits):
-        st = split_id * le
+        st = int(split_id * le)
         sub_data = all_data[st : st + le]
 
         with open('tensors-%d.pkl' % split_id, 'wb') as f:

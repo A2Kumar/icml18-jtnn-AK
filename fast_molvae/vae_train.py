@@ -13,6 +13,7 @@ import pickle as pickle
 
 from fast_jtnn import *
 import rdkit
+from tqdm import tqdm
 
 lg = rdkit.RDLogger.logger() 
 lg.setLevel(rdkit.RDLogger.CRITICAL)
@@ -23,7 +24,7 @@ parser.add_argument('--vocab', required=True)
 parser.add_argument('--save_dir', required=True)
 parser.add_argument('--load_epoch', type=int, default=0)
 
-parser.add_argument('--hidden_size', type=int, default=450)
+parser.add_argument('--hidden_size', type=int, default=300)
 parser.add_argument('--batch_size', type=int, default=16)
 parser.add_argument('--latent_size', type=int, default=56)
 parser.add_argument('--depthT', type=int, default=20)
@@ -74,9 +75,9 @@ total_step = args.load_epoch
 beta = args.beta
 meters = np.zeros(4)
 
-for epoch in range(args.epoch):
+for epoch in tqdm(range(args.epoch)):
     loader = MolTreeFolder(args.train, vocab, args.batch_size, num_workers=4)
-    for batch in loader:
+    for batch in tqdm(loader):
         total_step += 1
         try:
             model.zero_grad()

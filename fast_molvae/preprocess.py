@@ -46,7 +46,7 @@ if __name__ == "__main__":
     new_data = []
     for num,k in enumerate(data):
         new_data.append((k,num))
-    all_data = list(tqdm(p.imap(tensorize, new_data), total=len(new_data)))
+    all_data = list(tqdm(pool.imap(tensorize, new_data), total=len(new_data)))
 
     le = (len(all_data) + num_splits - 1) / num_splits
 

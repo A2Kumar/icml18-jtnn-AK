@@ -93,7 +93,7 @@ for epoch in tqdm(range(args.epoch)):
 
         if total_step % args.print_iter == 0:
             meters /= args.print_iter
-            print("[%d] Beta: %.3f, KL: %.2f, Word: %.2f, Topo: %.2f, Assm: %.2f, PNorm: %.2f, GNorm: %.2f" % (total_step, beta, meters[0], meters[1], meters[2], meters[3], param_norm(model), grad_norm(model)))
+            print("[%d]Loss: %.2f Beta: %.3f, KL: %.2f, Word: %.2f, Topo: %.2f, Assm: %.2f, PNorm: %.2f, GNorm: %.2f" % (total_step, loss.item(), beta, meters[0], meters[1], meters[2], meters[3], param_norm(model), grad_norm(model)))
             sys.stdout.flush()
             meters *= 0
 

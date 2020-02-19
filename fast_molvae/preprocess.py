@@ -5,11 +5,13 @@ from multiprocessing import Pool
 import math, random, sys
 from optparse import OptionParser
 import pickle as pickle
-
+from tqdm import tqdm
 from fast_jtnn import *
 import rdkit
 
-def tensorize(smiles, assm=True):
+def tensorize(args, assm=True):
+    smiles, num = args
+    print(num)
     mol_tree = MolTree(smiles)
     mol_tree.recover()
     if assm:
@@ -41,7 +43,10 @@ if __name__ == "__main__":
     with open(opts.train_path) as f:
         data = [line.strip("\r\n ").split()[0] for line in f]
 
-    all_data = pool.map(tensorize, data)
+    new_data = []
+    for num,k in enumerate(data):
+        new_data.append((data,num))
+    all_data = pool.map(tensorize, new_data)
 
     le = (len(all_data) + num_splits - 1) / num_splits
 

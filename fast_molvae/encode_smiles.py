@@ -41,6 +41,7 @@ for num,k in tqdm(enumerate(data)):
 
 results = {}
 for num,k in enumerate(ans):
+	print(k)
 	if num in error_num:
 		print('Skipping:')
 		continue

@@ -50,7 +50,7 @@ for num,k in enumerate(ans):
 	z_mol_vecs,mol_kl = model.rsample(x_mol_vecs, model.G_mean, model.G_var)
 	z1 = z_tree_vecs.cpu().detach().numpy()
 	z2 = z_mol_vecs.cpu().detach().numpy()
-	results[k] = (z1,z2)
+	results[k[0]] = (z1,z2)
 
 
 vae_features = pd.DataFrame.from_dict(results,orient='index')

@@ -30,9 +30,16 @@ with open('./keys.txt') as f:
 print(len(data))
 
 ans = model.encode_from_smiles(data[:100])
-for k in ans:
+results = {}
+for num,k in enumerate(ans):
 	x_tree_vecs = k[:300]
 	x_mol_vecs = k[300:]
 	z_tree_vecs,tree_kl = model.rsample(x_tree_vecs, model.T_mean, model.T_var)
 	z_mol_vecs,mol_kl = model.rsample(x_mol_vecs, model.G_mean, model.G_var)
-	print(z_tree_vecs.cpu().detach().numpy(),z_mol_vecs.cpu().detach().numpy())
+	z1 = z_tree_vecs.cpu().detach().numpy()
+	z2 = z_mol_vecs.cpu().detach().numpy()
+	results[data[num]] = (z1,z2)
+
+
+vae_features = pd.DataFrame.from_dict(results,orient='index')
+vae_features.to_csv('./AK/vae_features.csv')

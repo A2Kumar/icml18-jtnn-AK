@@ -21,7 +21,7 @@ vocab = [x.strip("\r\n ") for x in open(vocab_path)]
 vocab = Vocab(vocab)
 
 model = JTNNVAE(vocab, 300, 56, 20, 3)
-model.load_state_dict(torch.load())
+model.load_state_dict(torch.load('vae_model/model.iter-6500'))
 model = model.cuda()
 
 with open('./keys.txt') as f:

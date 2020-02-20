@@ -20,12 +20,12 @@ vocab_path = './vocab.txt'
 
 vocab = [x.strip("\r\n ") for x in open(vocab_path)] 
 vocab = Vocab(vocab)
-
+prefix = '00'
 model = JTNNVAE(vocab, 300, 56, 20, 3)
 model.load_state_dict(torch.load('vae_model/model.iter-6500'))
 model = model.cuda()
 
-with open('./keys.txt') as f:
+with open('./keys'+prefix+'.txt') as f:
     data = [line.strip("\r\n ").split()[0] for line in f]
 
 print(len(data))
@@ -34,7 +34,7 @@ error_num = []
 for num,k in tqdm(enumerate(data)):
 	try:
 		val = model.encode_from_smiles([k,])
-		ans.append(val.cpu())
+		ans.append(val)
 	except Exception as e:
 		print('Error on:',num,e)
 		error_num.append(num)
@@ -54,4 +54,4 @@ for num,k in enumerate(ans):
 
 
 vae_features = pd.DataFrame.from_dict(results,orient='index')
-vae_features.to_csv('./vae_features.csv')
+vae_features.to_csv('./vae_features'+prefix+'.csv')

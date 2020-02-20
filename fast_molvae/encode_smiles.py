@@ -30,4 +30,6 @@ with open('./keys.txt') as f:
 print(len(data))
 ans = model.encode_from_smiles(data[:100])
 for k in ans:
-	print(len(k))
+	x_tree_vecs = k[:300]
+	x_mol_vecs = k[300:]
+	print(len(x_tree_vecs,x_mol_vecs))

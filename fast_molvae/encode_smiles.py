@@ -35,4 +35,4 @@ for k in ans:
 	x_mol_vecs = k[300:]
 	z_tree_vecs,tree_kl = model.rsample(x_tree_vecs, model.T_mean, model.T_var)
 	z_mol_vecs,mol_kl = model.rsample(x_mol_vecs, model.G_mean, model.G_var)
-	print(len(z_tree_vecs),len(z_mol_vecs))
+	print(z_tree_vecs.numpy(),z_mol_vecs.numpy())

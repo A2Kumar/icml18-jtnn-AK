@@ -41,12 +41,11 @@ for num,k in tqdm(enumerate(data)):
 
 results = {}
 for num,k in enumerate(ans):
-	print(len(k[0][:300]))
 	if num in error_num:
 		print('Skipping:')
 		continue
-	x_tree_vecs = k[:300]
-	x_mol_vecs = k[300:]
+	x_tree_vecs = k[0][:300]
+	x_mol_vecs = k[0][300:]
 	z_tree_vecs,tree_kl = model.rsample(x_tree_vecs, model.T_mean, model.T_var)
 	z_mol_vecs,mol_kl = model.rsample(x_mol_vecs, model.G_mean, model.G_var)
 	z1 = z_tree_vecs.cpu().detach().numpy()

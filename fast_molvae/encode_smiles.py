@@ -30,4 +30,4 @@ with open('./keys.txt') as f:
 print(len(data))
 ans = model.encode_from_smiles(data[:100])
 for k in ans:
-	print(k)
+	print(len(k))

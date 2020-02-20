@@ -20,7 +20,7 @@ vocab_path = './vocab.txt'
 vocab = [x.strip("\r\n ") for x in open(vocab_path)] 
 vocab = Vocab(vocab)
 
-model = JTNNVAE(vocab, 300, 56, args.depthT, args.depthG)
+model = JTNNVAE(vocab, 300, 56, 20, 3)
 model.load_state_dict(torch.load())
 model = model.cuda()
 

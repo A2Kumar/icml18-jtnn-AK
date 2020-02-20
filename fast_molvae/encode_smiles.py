@@ -42,4 +42,4 @@ for num,k in enumerate(ans):
 
 
 vae_features = pd.DataFrame.from_dict(results,orient='index')
-vae_features.to_csv('./AK/vae_features.csv')
+vae_features.to_csv('./vae_features.csv')

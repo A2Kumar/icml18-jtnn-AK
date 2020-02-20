@@ -20,7 +20,7 @@ vocab_path = './vocab.txt'
 
 vocab = [x.strip("\r\n ") for x in open(vocab_path)] 
 vocab = Vocab(vocab)
-prefix = '01'
+prefix = '02'
 model = JTNNVAE(vocab, 300, 56, 20, 3)
 model.load_state_dict(torch.load('vae_model/model.iter-6500'))
 model = model.cuda()
@@ -42,7 +42,7 @@ for num,k in tqdm(enumerate(data)):
 results = {}
 for num,k in enumerate(ans):
 	if num in error_num:
-		print('Skipping:')
+		print('Skipping:',num)
 		continue
 	x_tree_vecs = k[0][:300]
 	x_mol_vecs = k[0][300:]

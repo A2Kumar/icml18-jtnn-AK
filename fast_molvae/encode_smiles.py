@@ -28,4 +28,6 @@ with open('./keys.txt') as f:
     data = [line.strip("\r\n ").split()[0] for line in f]
 
 print(len(data))
-ans = model.encode_from_smiles(data)
+ans = model.encode_from_smiles(data[:100])
+for k in ans:
+	print(k)

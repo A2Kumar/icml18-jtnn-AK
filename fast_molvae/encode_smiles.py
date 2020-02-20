@@ -30,7 +30,7 @@ with open('./keys.txt') as f:
 
 print(len(data))
 
-ans = model.encode_from_smiles(data[:100])
+ans = model.encode_from_smiles(data)
 results = {}
 for num,k in enumerate(ans):
 	x_tree_vecs = k[:300]

@@ -20,7 +20,7 @@ vocab_path = './vocab.txt'
 
 vocab = [x.strip("\r\n ") for x in open(vocab_path)] 
 vocab = Vocab(vocab)
-prefix = '10'
+prefix = '11'
 model = JTNNVAE(vocab, 300, 56, 20, 3)
 model.load_state_dict(torch.load('vae_model/model.iter-6500'))
 model = model.cuda()

@@ -29,10 +29,21 @@ with open('./keys.txt') as f:
     data = [line.strip("\r\n ").split()[0] for line in f]
 
 print(len(data))
+ans = []
+error_num = []
+for num,k in enumerate(data):
+	try:
+		val = model.encode_from_smiles(k)
+		ans.append(val)
+	except:
+		print('Error on:',num)
+		error_num.append(num)
 
-ans = model.encode_from_smiles(data)
 results = {}
 for num,k in enumerate(ans):
+	if num in error_num:
+		print('Skipping:')
+		continue
 	x_tree_vecs = k[:300]
 	x_mol_vecs = k[300:]
 	z_tree_vecs,tree_kl = model.rsample(x_tree_vecs, model.T_mean, model.T_var)

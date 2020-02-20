@@ -32,4 +32,4 @@ ans = model.encode_from_smiles(data[:100])
 for k in ans:
 	x_tree_vecs = k[:300]
 	x_mol_vecs = k[300:]
-	print(len(x_tree_vecs,x_mol_vecs))
+	print(len(x_tree_vecs),len(x_mol_vecs))

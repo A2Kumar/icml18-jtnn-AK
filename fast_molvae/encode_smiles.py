@@ -31,9 +31,9 @@ with open('./keys.txt') as f:
 print(len(data))
 ans = []
 error_num = []
-for num,k in enumerate(data):
+for num,k in tqdm(enumerate(data)):
 	try:
-		val = model.encode_from_smiles(k)
+		val = model.encode_from_smiles([k,])
 		ans.append(val)
 	except:
 		print('Error on:',num)

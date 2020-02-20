@@ -34,7 +34,7 @@ error_num = []
 for num,k in tqdm(enumerate(data)):
 	try:
 		val = model.encode_from_smiles([k,])
-		ans.append(val)
+		ans.append(val.cpu())
 	except Exception as e:
 		print('Error on:',num,e)
 		error_num.append(num)

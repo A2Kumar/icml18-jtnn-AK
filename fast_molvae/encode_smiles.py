@@ -41,7 +41,7 @@ for num,k in tqdm(enumerate(data)):
 
 results = {}
 for num,k in enumerate(ans):
-	if num in errors_num:
+	if num in error_num:
 		print('Skipping:',num)
 		continue
 	x_tree_vecs = k[1][0][:300]

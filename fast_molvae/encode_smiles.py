@@ -28,8 +28,11 @@ with open('./keys.txt') as f:
     data = [line.strip("\r\n ").split()[0] for line in f]
 
 print(len(data))
+
 ans = model.encode_from_smiles(data[:100])
 for k in ans:
 	x_tree_vecs = k[:300]
 	x_mol_vecs = k[300:]
-	print(len(x_tree_vecs),len(x_mol_vecs))
+	z_tree_vecs,tree_kl = model.rsample(x_tree_vecs, model.T_mean, model.T_var)
+	z_mol_vecs,mol_kl = model.rsample(x_mol_vecs, model.G_mean, model.G_var)
+	print(len(z_tree_vecs),len(z_mol_vecs))

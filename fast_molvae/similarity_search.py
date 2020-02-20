@@ -36,4 +36,4 @@ z_mol_vecs,mol_kl = model.rsample(x_mol_vecs, model.G_mean, model.G_var)
 z1 = z_tree_vecs.cpu().detach().numpy()
 z2 = z_mol_vecs.cpu().detach().numpy()
 
-print(z1,z2)
+print(list(z1)+list(z2))

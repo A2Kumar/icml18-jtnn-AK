@@ -20,9 +20,9 @@ vocab_path = './vocab.txt'
 
 vocab = [x.strip("\r\n ") for x in open(vocab_path)] 
 vocab = Vocab(vocab)
-prefix = '15'
+prefix = '00'
 model = JTNNVAE(vocab, 500, 128, 20, 3)
-model.load_state_dict(torch.load('vae_model/model.iter-8500-02kl'))
+model.load_state_dict(torch.load('vae_model/model.iter-8000-04kl'))
 model = model.cuda()
 
 with open('./keys'+prefix+'.txt') as f:
@@ -54,4 +54,4 @@ for num,k in enumerate(ans):
 
 
 vae_features = pd.DataFrame.from_dict(results,orient='index')
-vae_features.to_csv('./vae_features'+prefix+'-02kl.csv')
+vae_features.to_csv('./vae_features'+prefix+'-04kl.csv')

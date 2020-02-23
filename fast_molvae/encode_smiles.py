@@ -44,8 +44,8 @@ for num,k in enumerate(ans):
 	if num in error_num:
 		print('Skipping:',num)
 		continue
-	x_tree_vecs = k[1][0][:300]
-	x_mol_vecs = k[1][0][300:]
+	x_tree_vecs = k[1][0][:500]
+	x_mol_vecs = k[1][0][500:]
 	z_tree_vecs,tree_kl = model.rsample(x_tree_vecs, model.T_mean, model.T_var)
 	z_mol_vecs,mol_kl = model.rsample(x_mol_vecs, model.G_mean, model.G_var)
 	z1 = z_tree_vecs.cpu().detach().numpy()

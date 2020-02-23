@@ -54,4 +54,4 @@ for num,k in enumerate(ans):
 
 
 vae_features = pd.DataFrame.from_dict(results,orient='index')
-vae_features.to_csv('./vae_features'+prefix+'.csv')
+vae_features.to_csv('./vae_features'+prefix+'-nokl.csv')
